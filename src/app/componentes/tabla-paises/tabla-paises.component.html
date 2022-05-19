@@ -1,0 +1,7 @@
+
+<ul>
+    <button *ngFor="let pais of listadoPaises" class="listado" (click)="ElegirPais(pais)">
+        <img class = "imgPerfil" src={{pais.imagen}}>
+        {{pais.pais}}
+    </button>
+</ul>

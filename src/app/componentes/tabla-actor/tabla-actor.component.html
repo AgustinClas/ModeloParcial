@@ -1,0 +1,7 @@
+<H1>Actores</H1>
+<ul>
+    <button *ngFor="let actor of actores" class="listado" (click)="ElegirActor(actor)">
+        <img class = "imgPerfil" src={{actor.pais.imagen}}>
+        {{actor.nombre}} {{actor.apellido}}
+    </button>
+</ul>

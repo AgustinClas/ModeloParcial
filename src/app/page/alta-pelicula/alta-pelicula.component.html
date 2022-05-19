@@ -1,0 +1,103 @@
+<body>
+    <main role="main">
+<div class="container">
+    <div class="row">
+      <div class="col-md-4 order-md-2 mb-4">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-muted">  </span>
+        </h4>
+        <div class="card p-2">
+            <div class="input-group">
+                    <app-tabla-actor (actorsSeleccionado)="ActorElegido($event)"></app-tabla-actor>
+          </div>
+        </div>
+    </div>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Alta pelicula</h4>
+            <form class="needs-validation" [formGroup]="formValidaciones" novalidate>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Id</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" formControlName="id"
+                            placeholder="" value="" required>
+                        <small class="invalid"
+                            *ngIf="formValidaciones.controls['id'].errors?.['required'] && formValidaciones.controls['id'].touched">
+                           Id obligatorio!
+                        </small>
+                        <small class="invalid"
+                            *ngIf="formValidaciones.controls['id'].errors?.['pattern'] && formValidaciones.controls['id'].touched">
+                            Id inválido
+                        </small>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">Nombre</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName"
+                            formControlName="nombre" placeholder="" value="" required>
+                        <small class="invalid"
+                            *ngIf="formValidaciones.controls['nombre'].errors?.['required'] && formValidaciones.controls['nombre'].touched">
+                            Nombre obligatorio!
+                        </small>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="email">Tipo<span class="text-muted"></span></label>
+                    <input type="email" class="form-control" id="email" name="email" formControlName="tipo"
+                        >
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['tipo'].errors?.['required'] && formValidaciones.controls['tipo'].touched">
+                        Tipo obligatorio!
+                    </small>
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['tipo'].errors?.['pattern'] && formValidaciones.controls['tipo'].touched">
+                        Tipo inválido
+                    </small>
+                </div>
+                <div class="mb-3">
+                    <label for="address">Fecha de estreno</label>
+                    <input type="text" class="form-control" id="address" name="address" formControlName="fechaEstreno"
+                        placeholder="Formato DD-MM-AAAA" required>
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['fechaEstreno'].errors?.['required'] && formValidaciones.controls['fechaEstreno'].touched">
+                        Fecha de estreno obligatoria! 
+                    </small>
+                </div>
+                <div class="mb-3">
+                    <label for="address">Cantidad de publico</label>
+                    <input type="text" class="form-control" id="address" name="address" formControlName="cantidadPublico"
+                    required>
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['cantidadPublico'].errors?.['required'] && formValidaciones.controls['cantidadPublico'].touched">
+                        Cantidad de publico obligatoria!
+                    </small>
+                    <small class="invalid"
+                        *ngIf="formValidaciones.controls['cantidadPublico'].errors?.['pattern'] && formValidaciones.controls['cantidadPublico'].touched">
+                        Cantidad invalida
+                    </small>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label for="country">Actores</label>
+                        <div *ngIf="actoresElegidos != [] else actoresTemplate">
+                            <ul>
+                                <li *ngFor="let actor of actoresElegidos">
+                                    {{actor.name}} {{actor.lastName}} - <strong> {{actor.country}}</strong>
+                                </li>
+                            </ul>
+                        </div>
+                        <ng-template #actoresTemplate>
+                            <small class="invalid">
+                                Ingrese un actor minimo.
+                            </small>
+                        </ng-template>
+                    </div>
+                </div>
+                <hr class="mb-4">
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit"
+                    [disabled]="formValidaciones.invalid" >Guardar</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    </main>
+</body>
